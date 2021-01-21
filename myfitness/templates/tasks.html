@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+
+    <title>MyFitness - Tasks</title>
+    <style>
+      table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.btn_modal{
+  padding: 4px 6px;
+  margin: 10px 0px;
+  background: rgb(255, 255, 255);
+  border: 2px solid #000;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+}
+.modal-content input{
+    width: 80%;
+    margin: 6px 0px;
+    border: 1px solid rgba(0,0,0,0.2);
+
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="left">
+          <h2><a href="/">Myfitness</a></h2>
+        </div>
+        <div class="right">
+
+          {% if option %}
+          <a href="{% url 'profile' %}">Profile</a>
+          <a href="{% url 'logout' %}">Logout</a>
+          
+            {% else %}
+          <a href="{% url 'signin' %}">Login</a>         
+          {% endif %}
+        </div>
+      </nav>
+    <!-- <a href="{% url 'logout' %}">Logout</a> -->
+
+    <div class="profile_container">
+      <div><h2>Todays Tasks</h2></div>
+      <div class="line" style="width: 190px;"></div>
+      <button id="edit-btn" class="trigger btn_modal"><a id="edit">Add Task</a></button>
+      <h3 style="margin: 20px 0px;">Todays Tasks</h3>
+      
+      <table>
+        <tr>
+          <th>Task Name</th>
+          <th>Time</th>
+          <th>Status</th>
+          <th>Action</th>
+
+        </tr>
+
+<!-- Loop -->
+  {% for i in data%}
+        <tr>
+          <td>{{i.task}}</td>
+          <td>{{i.time}}</td>
+          <!-- Action Goes here pending or completed -->
+          {% if not i.action%}
+          <td><a href="{% url 'check' id=i.id user=i.user %}" onclick="check(this)">❌</a></td>
+          {% else %}
+          <td>✔</td>
+          {% endif %}
+          <td ><a href="{% url 'edit' id=i.id user=i.user%}">Edit </a>&nbsp;
+          <a href="{% url 'delete' id=i.id user=i.user%}">Delete</a>
+          </td>
+        </tr>
+  {% endfor %}
+<!-- Looop ends -->
+
+
+      </table>
+
+      <!-- <div><h2>Todays Tasks</h2></div>
+      <div class="line" style="width: 170px;"></div>
+      <button id="edit-btn" class="trigger"><a id="edit" >Add Food</a></button>
+
+      <div class="modal">
+          <div class="modal-content">
+              <span class="close-button">×</span>
+              <h3 style="margin-bottom: 20px;">Edit Profile &nbsp;<i class="far fa-edit"></i></h3>
+              <form method="POST" action="">
+                {% csrf_token %}
+                <input type="text" name="food" placeholder="Food Name" > 
+                <input type="submit" name="submit" value="Save" style="background-color: tomato;border: none;padding: 0px 12px;height: 35px;border-radius: 2px;">
+      
+              </form>
+          </div>
+      </div> -->
+
+
+      <!-- <div><h2>Todays Points</h2></div>
+      <div class="line" style="width: 175px;"></div>
+
+
+      <div><h2>Health Tips</h2> </div>
+      <div class="line" style="width: 138px;"></div> -->
+
+
+
+    </div>
+        <div class="modal">
+          <div class="modal-content">
+              <span class="close-button">×</span>
+              <h3 style="margin-bottom: 20px;">Add Task&nbsp;<i class="far fa-edit"></i></h3>
+              <form method="POST" action="{% url 'get_data' %}">
+                {% csrf_token %}
+                <input type="text" name="task" placeholder="Task Name" style="padding: 4px 6px;" > 
+                <input type="date" name="date"  style="padding: 4px 6px;" > 
+                <input type="time" name="time"  style="padding: 4px 6px;" > 
+                <input type="submit" name="submit" value="Save" style="background-color: tomato;border: none;padding: 2px 10px;height: 30px;border-radius: 2px;">
+      
+              </form>
+          </div>
+      </div>
+    <script type="text/javascript">
+   	
+      var modal = document.querySelector(".modal");
+      var trigger = document.querySelector(".trigger");
+      var closeButton = document.querySelector(".close-button");
+      
+      function toggleModal() {
+          modal.classList.toggle("show-modal");
+      }
+      
+      function windowOnClick(event) {
+          if (event.target === modal) {
+              toggleModal();
+          }
+      }
+      
+      trigger.addEventListener("click", toggleModal);
+      closeButton.addEventListener("click", toggleModal);
+      window.addEventListener("click", windowOnClick);
+      
+      function check(value){
+        
+        alert("you got 10 points");
+      }
+         </script>
+</body>
+</html>

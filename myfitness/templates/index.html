@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+
+    <title>Myfitness | An online platform to track and share fitness.</title>
+    <style></style>
+  </head>
+  <body>
+    <nav>
+      <div class="left">
+        <h2><a href="/">Myfitness</a></h2>
+      </div>
+      <div class="right">
+        {% if option %}
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+          {% else %}
+        <a href="{% url 'signin' %}">Login</a>         
+        {% endif %}
+      </div>
+    </nav>
+
+    {% if option %}
+    <header>
+      <div class="container content">
+          <h3>CONNECT TO SCORES </h3>
+          <h1>Be Fit and Track your scores</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt assumenda reprehenderit sint, vel maxime sequi dolorum cumque ut praesentium molestiae quasi, adipisci fugiat fuga nesciunt mollitia officia! Ad, ratione provident.<br>
+</p>
+          <a href="{% url 'leaderboard' %}"><button style="padding: 3px 8px;background: transparent;border: 2px solid darkblue;font-size: 18px;border-radius: 3px;box-shadow: 4px 4px 5px rgba(0,0,0,0.1);cursor: pointer;">My Leaderboard</button></a>
+          <!-- <button style="margin-left:15px;padding: 3px 8px;background: transparent;border: 2px solid darkblue;font-size: 18px;border-radius: 3px;box-shadow: 4px 4px 5px rgba(0,0,0,0.1);">Calculate Calorie</button> -->
+
+      </div>
+      <div class="container">
+          <img src="{%  static 'home.png' %}" alt="" / >
+      </div>
+
+  </header>
+  <header >
+    <div class="container hide">
+      <img src="{%  static 'hom2.png' %}" alt="" / >
+    </div>
+    
+ 
+<div>
+  <h3>CONNECT TO TASKS </h3>
+  <h1>Be Fit and Track your Tasks</h1>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt assumenda reprehenderit sint, vel maxime sequi dolorum cumque ut praesentium molestiae quasi, adipisci fugiat fuga nesciunt mollitia officia! Ad, ratione provident.<br>
+</p>
+  <a href="{% url 'tasks' %}"><button style="padding: 3px 8px;background: transparent;border: 2px solid darkblue;font-size: 18px;border-radius: 3px;box-shadow: 4px 4px 5px rgba(0,0,0,0.1);cursor: pointer;">My Tasks</button></a>
+  <!-- <button style="margin-left:15px;padding: 3px 8px;background: transparent;border: 2px solid darkblue;font-size: 18px;border-radius: 3px;box-shadow: 4px 4px 5px rgba(0,0,0,0.1);">Calculate Calorie</button> -->
+
+</div>
+
+  </header>
+  <header>
+    
+      <div class="container content">
+          <h3>CONNECT TO CALORIES </h3>
+          <h1>Be Fit and Track your Calories</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt assumenda reprehenderit sint, vel maxime sequi dolorum cumque ut praesentium molestiae quasi, adipisci fugiat fuga nesciunt mollitia officia! Ad, ratione provident.<br>
+</p>
+          <a href="{% url 'calorie' %}"><button style="padding: 3px 8px;background: transparent;border: 2px solid darkblue;font-size: 18px;border-radius: 3px;box-shadow: 4px 4px 5px rgba(0,0,0,0.1);cursor: pointer;">My Calories</button></a>
+          <!-- <button style="margin-left:15px;padding: 3px 8px;background: transparent;border: 2px solid darkblue;font-size: 18px;border-radius: 3px;box-shadow: 4px 4px 5px rgba(0,0,0,0.1);">Calculate Calorie</button> -->
+
+      </div>
+      <div class="container">
+          <img src="{%  static 'home4.jpg' %}" alt="" / >
+      </div>
+
+  </header>
+
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+    {% else %}
+
+    <header>
+      <div class="container content">
+          <h3>CONNECT TO HEALTH </h3>
+          <h1>Be Fit and Track your health</h1>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt assumenda reprehenderit sint, vel maxime sequi dolorum cumque ut praesentium molestiae quasi, adipisci fugiat fuga nesciunt mollitia officia! Ad, ratione provident.<br>
+</p>
+          <a href="{% url 'signup' %}"><button style="padding: 3px 8px;background: transparent;border: 2px solid darkblue;font-size: 18px;border-radius: 3px;box-shadow: 4px 4px 5px rgba(0,0,0,0.1);cursor: pointer;">Register Now</button></a>
+          <!-- <button style="margin-left:15px;padding: 3px 8px;background: transparent;border: 2px solid darkblue;font-size: 18px;border-radius: 3px;box-shadow: 4px 4px 5px rgba(0,0,0,0.1);">Calculate Calorie</button> -->
+
+      </div>
+      <div class="container">
+          <img src="{%  static 'home.png' %}" alt="" / >
+      </div>
+
+  </header>
+  <header >
+    <div class="container hide">
+      <img src="{%  static 'hom2.png' %}" alt="" / >
+    </div>
+    
+ 
+<div class="container fm" style="margin:20px 20px;">
+<h2 >Calorie Calculator</h2>
+<input type="number" placeholder="Age in years" class="bmi_input" id="age" required min="2" max="100"/>
+<input type="number" placeholder="Weight in KG" class="bmi_input" id="weight" required min="2" max="400"/>
+<input type="number" placeholder="Height in CM" class="bmi_input" id="height" required min="40cm"/>
+<select id="gender" class="bmi_input">
+    <option value="0">Male</option>
+    <option value="1">Female</option>
+
+</select>
+
+
+<button style="padding: 3px 8px;background: transparent;border: 2px solid darkblue;font-size: 18px;border-radius: 3px;box-shadow: 4px 4px 5px rgba(0,0,0,0.1);cursor: pointer; display: block;" onclick="calc()">Calculate</button>
+<!-- <button style="margin-left:15px;padding: 3px 8px;background: transparent;border: 2px solid darkblue;font-size: 18px;border-radius: 3px;box-shadow: 4px 4px 5px rgba(0,0,0,0.1);">Calculate Calorie</button> -->
+<input type="text" readonly placeholder="Calorie/day" class="bmi_input" id="result"/>
+</div>
+  </header>
+
+    {% endif %}
+    <script>
+        function calc(){
+            // preventDefault(); 
+            console.log(age.value,weight.value,height.value,gender.value)
+
+            if (gender.value=='0'){
+                console.log('male');
+
+            cal =   66.47 + (13.75 * parseInt(weight.value)) + (5.003 * parseInt(height.value)) - (6.755 * parseInt(age.value))
+            result.value =  cal+ 'Cal/day'
+            }
+            else{
+                cal =   651.1 + (9.563 * parseInt(weight.value)) + (1.85 * parseInt(height.value)) - (4.676 * parseInt(age.value))
+            result.value =  cal + ' Cal/day'
+            }
+        }
+    </script>
+
+    <div style="padding: 15px 6%;
+    background: #02f0e4;
+    height: 130px;
+    width: auto;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.1);">
+    <div style="float: left;">
+        <h2>All rights reserved | 2021</h2>
+        <h3 >Ashish Bhardwaj</h3>
+        <h3 >Software Developer</h3>
+      </div>
+        <div style="float: right;">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <p>Deserunt assumenda reprehenderit sint, vel</p>
+            <p> maxime sequi dolorum cumque ut praesentium molestiae quasi,
+         <p>  adipisci fugiat fuga nesciunt mollitia officia! Ad, ratione provident.
+          </p>
+          
+      </div>
+        
+    </div>
+
+  </body>
+</html>
+
+
+
+

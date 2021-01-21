@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+
+    <title>MyFitness - Login</title>
+    <style>
+        input{
+            display: block;
+            
+        }
+        .login{
+            margin-top: 70px;
+        }
+        .btn_submit{
+
+    margin-top: 15px!important;
+
+}
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="left">
+        <h2><a href="/">Myfitness</a></h2>
+      </div>
+      <div class="right">
+        <!-- <a href="">Home</a> -->
+        <!-- <a href="">Profile</a> -->
+        
+      </div>
+    </nav>
+    <div class="container">
+      <div class="parent">
+        <div class="child hide">
+          <img src="{% static 'login.png' %}" alt="" />
+
+        </div>
+        <div class="child login">
+          <form method="POST">
+            {% csrf_token %}
+            <h2 style="margin: 10px">Login Here</h2>
+
+            <!-- <h3>Personal Details</h3> -->
+
+            <input type="email" placeholder="Email address" name="email" />
+            <input type="password" placeholder="Password" name="pass1" />
+            <!-- <h3>Health Details</h3> -->
+
+            {% if error %}
+            <span class="error" color="{{c}}" style="padding-left: 15px;">{{error}}</span>
+            {% endif %}
+         
+            <input
+              type="submit"
+              value="Login"
+              style="display: block"
+              class="btn_submit"
+            />
+            <a href="{% url 'signup' %}" style="padding-left: 15px;">Don't have an Account?</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

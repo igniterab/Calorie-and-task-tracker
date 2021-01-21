@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+
+    <title>MyFitness - Profile</title>
+    <style>
+      table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.btn_modal{
+  padding: 4px 6px;
+  margin: 10px 0px;
+  background: rgb(255, 255, 255);
+  border: 2px solid #000;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+}
+.profile_details{
+  margin: 20px 0px;
+  padding: 10px 15px;
+  border: 2px solid darkcyan;
+  box-shadow: 4px 4px 5px rgba(0,0,0,0.2);
+}
+.features{
+  margin: 30px 0px;
+}
+
+.features ul{
+  list-style-type: none;
+}
+.features a{
+text-decoration: none;
+font-size: 20px;
+color: rgb(0, 18, 97);
+font-weight: 500;
+
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="left">
+          <h2><a href="/">Myfitness</a></h2>
+        </div>
+        <div class="right">
+
+          {% if option %}
+          <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+          <a href="{% url 'signin' %}">Login</a>         
+          {% endif %}
+        </div>
+      </nav>
+    <!-- <a href="{% url 'logout' %}">Logout</a> -->
+
+    <div class="profile_container">
+
+      <div>
+        <h2>Personal Details</h2>
+   
+      <div class="line" style="width: 200px;"></div>
+
+      <div class="profile_details">
+        <h3>{{data.first_name}} {{data.last_name}}</h3>
+        <p>{{data.email}}</p>
+        <p>Age : {{profile.age}} years</p>
+        <p>Weight : {{profile.weight}} kg</p>
+        <p>Height : {{profile.height}} cm</p>
+        <p>Calorie Needed : {{profile.calorie_needed}} calorie/day</p>
+
+
+        
+      </div>
+      </div>
+
+      <div class="features">
+        <h2>Features</h2>
+      <div class="line" style="width: 110px;"></div>
+
+        <ul>
+        <li><a href="{% url 'calorie' %}">Calorie Tracker &rarr;</a></li>
+        <li><a href="{% url 'tasks' %}">Tasks Tracker &rarr;</a></li>
+        <li><a href="{% url 'leaderboard' %}">Social Leaderboard  &rarr;</a></li>
+
+      </ul>
+
+        
+      </div>
+    </div>
+
+      
+
+</body>
+</html>

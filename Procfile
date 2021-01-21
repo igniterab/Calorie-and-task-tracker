@@ -1,0 +1,1 @@
+web: gunicorn myfitness.wsgi --log-file -

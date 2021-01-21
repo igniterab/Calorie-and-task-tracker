@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+
+    <title>MyFitness - Leaderboard</title>
+    <style>
+      table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.btn_modal{
+  padding: 4px 6px;
+  margin: 10px 0px;
+  background: rgb(255, 255, 255);
+  border: 2px solid #000;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="left">
+          <h2><a href="/">Myfitness</a></h2>
+        </div>
+        <div class="right">
+
+          {% if option %}
+          <a href="{% url 'profile' %}">Profile</a>
+          <a href="{% url 'logout' %}">Logout</a>
+          
+            {% else %}
+          <a href="{% url 'signin' %}">Login</a>         
+          {% endif %}
+        </div>
+      </nav>
+    <!-- <a href="{% url 'logout' %}">Logout</a> -->
+
+    <div class="profile_container">
+      <div><h2>Leaderboard </h2></div>
+      <div class="line" style="width: 160px;"></div>
+      <div style="padding: 20px 0px;">
+          Your Points : {{you}}
+      </div>
+      <div>
+          Share You Points on 
+          <ul>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/leaderboard/">
+                Facebook
+                </a></li>
+              <li><a href="https://twitter.com/home?status=hey%20i%20got%20pointshere%20points%20have%20a%20look">
+                Twitter
+                </a></li>
+              <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=http://swiftforentrepreneurs.com/&title=Be%20first%20%7C%20Join%20Swift%20for%20Entrepreneurs&summary=Swift%20for%20Entrepreneurs%20is%20a%20project-based%20programming%20course%20for%20non-technical%20founders.%20We'll%20learn%20how%20to%20build%20iOS%20apps%20from%20scratch%20using%20Apple's%20new%20programming%20language:%20Swift.%20Be%20first%20and%20learn%20with%20me!&source=http://127.0.0.1:8000/leaderboard/">
+Linkedin
+</a></li>
+
+
+          </ul>
+      </div>
+      <!-- <button id="edit-btn" class="trigger btn_modal"><a id="edit" >Add Food</a></button> -->
+
+      
+      <h3 style="margin: 20px 0px;">Todays Rankers</h3>
+      
+      <table>
+        <tr>
+          <th>Rank</th>
+
+          <th>Name</th>
+          <th>Points</th>
+        </tr>
+
+<!-- Loop -->
+{% for i in datas %}
+        <tr>
+          <td>#{{forloop.counter}}</td>
+          <td>{{i.person.first_name}}{{i.person.last_name}}</td>
+          <td>{{i.points}}</td>
+        </tr>
+{% endfor %}
+<!-- Looop ends -->
+
+
+      </table>
+
+
+
+
+
+    </div>
+
+</body>
+</html>

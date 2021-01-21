@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <title>MyFitness - Signup</title>
+  </head>
+  <body>
+    <nav>
+      <div class="left">
+        <h2><a href="/">Myfitness</a></h2>
+      </div>
+      <div class="right">
+        <!-- <a href="">Home</a> -->
+        <!-- <a href="">Profile</a> -->
+        
+      </div>
+    </nav>
+    <div class="container">
+      <div class="parent">
+        <div class="child hide">
+          <img src="{% static 'register.png' %}" alt="" />
+        </div>
+        <div class="child">
+          <form method="POST">
+            <h2 style="margin: 10px">Register</h2>
+            {% csrf_token %}
+
+            <!-- <h3>Personal Details</h3> -->
+            <input type="text" placeholder="First Name" name="first" />
+            <input type="text" placeholder="Last Name" name="last" />
+            <input type="email" placeholder="Email address" name="email" />
+            <input type="password" placeholder="Password" name="pass1" />
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              name="pass2"
+            />
+
+            <!-- <h3>Health Details</h3> -->
+            <input type="number" placeholder="Age" name="age" />
+            <input type="number" placeholder="Weight in KG" name="weight" />
+            <input type="number" placeholder="Height in CM" name="height" />
+
+            <select name="excercise">
+                <option default="">Excercise Status</option>
+                <option value="0">Little/no exercise</option>
+                <option value="1">Light exercise</option>
+                <option value="2">Moderate exercise (3-5 days/wk)</option>
+                <option value="3">Moderate exercise (6-7 days/wk)</option>
+                <option value="4">Extra active </option>
+                <!-- <select>Little/no exercise</select> -->
+
+            </select>
+
+            <div class="btn_radio">
+              <input type="radio" id="test1" name="radio-group" value="0" checked  />
+              <label for="test1">Male</label>
+              <input type="radio" id="test2" name="radio-group" value="1" />
+              <label for="test2" >Female</label>
+            </div>
+            {% if error %}
+            <span class="error" color="{{c}}" style="padding-left: 15px;">{{error}}</span>
+            {% endif %}
+         
+            <input
+              type="submit"
+              value="Register Now"
+              style="display: block"
+              class="btn_submit"
+            />
+            <a href="{% url 'signin' %}" style="padding-left: 15px;">Already have an Account?</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

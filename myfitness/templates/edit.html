@@ -1,0 +1,35 @@
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <style>
+         form input{
+            display: block;
+            width: 200px;
+            padding: 4px 6px;
+            margin: 6px 10px;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+
+<body>
+</div>
+
+        <div class="modals">
+          <div class="modal-content">
+             
+              <h3 style="margin-bottom: 20px;">Edit Task &nbsp;<i class="far fa-edit"></i></h3>
+              <form method="POST" action="{% url 'edit_save' obj=object.id %}">
+                {% csrf_token %}
+                <input type="text"  name="task" placeholder="Task Name" style="padding: 4px 6px;"value="{{object.task}}" > 
+                <input type="date" name="date"  style="padding: 4px 6px;" value="{{ object.date|date:"Y-m-d" }}"> 
+                <input type="time" name="time"  style="padding: 4px 6px;" value="{{ object.time|time:" H:i" }}"> 
+                <input type="submit" name="submit" value="Save" style="background-color: tomato;border: none;padding: 2px 10px;height: 30px;border-radius: 2px;">
+      
+              </form>
+          </div>
+      </div>
+</body>
+
+</html>
